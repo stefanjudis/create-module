@@ -12,15 +12,12 @@ log() {
   echo "*** $1"
 }
 
-check_if_defined() {
-  if [ -z "$1" ]; then
-    echo "Please define $1 env var...";
+create_new_gh_repo() {
+  if [ -z "$GH_USERNAME" ] || [ -z "$GH_ACCESS_TOKEN" ]; then
+    echo "Please define GH_USERNAME and GH_ACCESS_TOKEN env var";
     exit 1
   fi
-}
 
-create_new_gh_repo() {
-  check_if_defined "GH_USERNAME"
   curl -u "$GH_USERNAME:$GH_ACCESS_TOKEN" https://api.github.com/user/repos -d "{\"name\":\"$NEW_PACKAGE_NAME\"}" 1> /dev/null
   git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
   git commit --allow-empty -m "Create main"
@@ -28,7 +25,6 @@ create_new_gh_repo() {
 }
 
 push_if_repo_exists() {
-  # https://stackoverflow.com/questions/12170459/check-if-git-remote-exists-before-first-push
   git ls-remote --exit-code origin 2> /dev/null
   if test $? = 0; then
     git push origin "$DEFAULT_BRANCH"

@@ -5,6 +5,9 @@
   "bin": {
     "create": "index.sh"
   },
+  "files": [
+    "files/**"
+  ],
   "scripts": {},
   "repository": {
     "type": "git",
