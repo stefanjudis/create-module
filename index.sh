@@ -27,16 +27,19 @@ create_new_gh_repo() {
   git push origin "$DEFAULT_BRANCH"
 }
 
-push_if_repo() {
-  git ls-remote --exit-code faraway
+push_if_repo_exists() {
+  # https://stackoverflow.com/questions/12170459/check-if-git-remote-exists-before-first-push
+  git ls-remote --exit-code origin 2> /dev/null
   if test $? = 0; then
     git push origin "$DEFAULT_BRANCH"
+  else
+    echo "Origin does not exist. Not pushing to remote..."
   fi
 }
 
 write_template() {
-  TEMPLATE=$(cat "$INIT_PACKAGE_DIR/templates/$1")
-  eval "echo \"${TEMPLATE}\"" > "$PWD/$1"
+  TEMPLATE=$(cat "$INIT_PACKAGE_DIR/templates/$1.txt")
+  eval "echo \"${TEMPLATE}\"" > "$PWD/$1.$2"
 }
 
 log "Initializing git repo"
@@ -59,8 +62,10 @@ log "Copying config files"
   cp -r "$INIT_PACKAGE_DIR/files/."[a-zA-Z0-9]* "$INIT_PACKAGE_DIR/files/"* "$PWD"
 
 log "Creating Code of Conduct"
-  write_template "CODE-OF-CONDUCT.md"
+  write_template "CODE-OF-CONDUCT" "md"
+  write_template "README" "md"
 
 log "Making initial commit"
   git add .
   git commit -m "Initial commit"
+  push_if_repo_exists
