@@ -5,10 +5,7 @@
   "bin": {
     "create": "index.sh"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "npm publish --access public"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefanjudis/create-module.git"
@@ -21,7 +18,6 @@
   },
   "homepage": "https://github.com/stefanjudis/create-module#readme",
   "dependencies": {
-    "conduct": "^2.3.1",
-    "inquirer": "^7.3.1"
+    "conduct": "^2.3.1"
   }
 }
