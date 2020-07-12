@@ -6,6 +6,8 @@ INIT_PACKAGE_DIR=$(dirname "$INIT_PACKAGE_BIN_REAL_PATH")
 
 NEW_PACKAGE_NAME=$(basename "$PWD")
 
+DEFAULT_BRANCH="main"
+
 log() {
   echo
   echo "*** $1"
@@ -22,9 +24,16 @@ create_new_gh_repo() {
   check_if_defined "GH_USERNAME"
   curl -u "$GH_USERNAME:$GH_ACCESS_TOKEN" https://api.github.com/user/repos -d "{\"name\":\"$NEW_PACKAGE_NAME\"}" 1> /dev/null
   git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
-  git checkout -b main
-  git commit --allow-empty -m "Push main"
-  git push origin main
+  git checkout -b "$DEFAULT_BRANCH"
+  git commit --allow-empty -m "Create main"
+  git push origin "$DEFAULT_BRANCH"
+}
+
+push_if_repo() {
+  git ls-remote --exit-code faraway
+  if test $? = 0; then
+    git push origin "$DEFAULT_BRANCH"
+  fi
 }
 
 write_template() {
