@@ -34,8 +34,9 @@ push_if_repo_exists() {
 }
 
 write_template() {
-  TEMPLATE=$(cat "$INIT_PACKAGE_DIR/templates/$1.txt")
-  eval "echo \"${TEMPLATE}\"" > "$PWD/$1.$2"
+  NEW_FILE_NAME=$(head -n 1 "$1")
+  TEMPLATE=$(tail -n +3 "$1")
+  eval "echo \"${TEMPLATE}\"" > "$PWD/$NEW_FILE_NAME"
 }
 
 log "Initializing git repo"
@@ -54,12 +55,11 @@ log "Creating GitHub repo"
 log "Creating package.json"
   npm init --yes 1> /dev/null
 
-log "Copying config files"
-  cp -r "$INIT_PACKAGE_DIR/files/."[a-zA-Z0-9]* "$INIT_PACKAGE_DIR/files/"* "$PWD"
-
 log "Writing template files"
-  write_template "CODE-OF-CONDUCT" "md"
-  write_template "README" "md"
+  for FILE in "$INIT_PACKAGE_DIR"/templates/*
+  do
+    write_template "$FILE"
+  done
 
 log "Making initial commit"
   git add .

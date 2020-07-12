@@ -1,3 +1,5 @@
+README.md
+---
 # $NEW_PACKAGE_NAME
 
 ...

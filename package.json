@@ -6,7 +6,6 @@
     "create": "index.sh"
   },
   "files": [
-    "files/**",
     "templates/**"
   ],
   "scripts": {},
