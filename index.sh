@@ -61,7 +61,7 @@ log "Creating package.json"
 log "Copying config files"
   cp -r "$INIT_PACKAGE_DIR/files/."[a-zA-Z0-9]* "$INIT_PACKAGE_DIR/files/"* "$PWD"
 
-log "Creating Code of Conduct"
+log "Writing template files"
   write_template "CODE-OF-CONDUCT" "md"
   write_template "README" "md"
 
