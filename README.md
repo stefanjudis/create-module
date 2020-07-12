@@ -9,3 +9,5 @@ npm init @stfnjds
 
 npx @stfnjds
 ```
+
+**If you want to create a GitHub repot the env vars `GH_USERNAME` and `GH_ACCESS_TOKEN` are required.**
