@@ -5,7 +5,6 @@ INIT_PACKAGE_BIN_REAL_PATH=$(realpath "$0")
 INIT_PACKAGE_DIR=$(dirname "$INIT_PACKAGE_BIN_REAL_PATH")
 
 NEW_PACKAGE_NAME=$(basename "$PWD")
-
 DEFAULT_BRANCH="main"
 
 log() {
@@ -24,8 +23,6 @@ create_new_gh_repo() {
   check_if_defined "GH_USERNAME"
   curl -u "$GH_USERNAME:$GH_ACCESS_TOKEN" https://api.github.com/user/repos -d "{\"name\":\"$NEW_PACKAGE_NAME\"}" 1> /dev/null
   git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
-  git checkout -b "$DEFAULT_BRANCH"
-  git commit --allow-empty -m "Create main"
   git push origin "$DEFAULT_BRANCH"
 }
 
@@ -37,14 +34,13 @@ push_if_repo() {
 }
 
 write_template() {
-  echo $MY_EMAIL
   TEMPLATE=$(cat "$INIT_PACKAGE_DIR/templates/$1")
-  echo "$TEMPLATE"
   eval "echo \"${TEMPLATE}\"" > "$PWD/$1"
 }
 
 log "Initializing git repo"
   git init
+  git checkout -b "$DEFAULT_BRANCH"
 
 log "Creating GitHub repo"
   echo "Want to create a GitHub repo?"
