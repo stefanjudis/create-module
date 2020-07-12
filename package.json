@@ -1,10 +1,13 @@
 {
-  "name": "@stefanjudis/create",
+  "name": "@stfnjds/create",
   "version": "1.0.0",
   "description": "Boilerplate for new node projects",
-  "main": "index.js",
+  "bin": {
+    "create": "index.sh"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/stefanjudis/create-module/issues"
   },
-  "homepage": "https://github.com/stefanjudis/create-module#readme"
+  "homepage": "https://github.com/stefanjudis/create-module#readme",
+  "dependencies": {
+    "conduct": "^2.3.1",
+    "inquirer": "^7.3.1"
+  }
 }
