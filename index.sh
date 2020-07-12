@@ -23,6 +23,7 @@ create_new_gh_repo() {
   check_if_defined "GH_USERNAME"
   curl -u "$GH_USERNAME:$GH_ACCESS_TOKEN" https://api.github.com/user/repos -d "{\"name\":\"$NEW_PACKAGE_NAME\"}" 1> /dev/null
   git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
+  git commit --allow-empty -m "Create main"
   git push origin "$DEFAULT_BRANCH"
 }
 
