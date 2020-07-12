@@ -27,6 +27,13 @@ create_new_gh_repo() {
   git push origin main
 }
 
+write_template() {
+  echo $MY_EMAIL
+  TEMPLATE=$(cat "$INIT_PACKAGE_DIR/templates/$1")
+  echo "$TEMPLATE"
+  eval "echo \"${TEMPLATE}\"" > "$PWD/$1"
+}
+
 log "Initializing git repo"
   git init
 
@@ -43,10 +50,10 @@ log "Creating package.json"
   npm init --yes 1> /dev/null
 
 log "Copying config files"
-  cp -r "$INIT_PACKAGE_DIR/templates/."[a-zA-Z0-9]* "$INIT_PACKAGE_DIR/templates/"* "$PWD"
+  cp -r "$INIT_PACKAGE_DIR/files/."[a-zA-Z0-9]* "$INIT_PACKAGE_DIR/files/"* "$PWD"
 
 log "Creating Code of Conduct"
-  "$INIT_PACKAGE_DIR/node_modules/.bin/conduct"
+  write_template "CODE-OF-CONDUCT.md"
 
 log "Making initial commit"
   git add .

@@ -17,7 +17,5 @@
     "url": "https://github.com/stefanjudis/create-module/issues"
   },
   "homepage": "https://github.com/stefanjudis/create-module#readme",
-  "dependencies": {
-    "conduct": "^2.3.1"
-  }
+  "dependencies": {}
 }
