@@ -13,7 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/stefanjudis/create-module.git"
   },
-  "keywords": [],
+  "keywords": [
+    "npm",
+    "npx"
+  ],
   "author": "stefan judis <stefanjudis@gmail.com>",
   "license": "MIT",
   "bugs": {
