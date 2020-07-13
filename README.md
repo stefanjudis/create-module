@@ -14,7 +14,7 @@ npm init @stfnjds
 
 # or
 
-npx @stfnjds
+npx @stfnjds/create
 ```
 
 ## Code of conduct
