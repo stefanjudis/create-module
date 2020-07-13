@@ -6,7 +6,7 @@ README.md
 
 ## Code of conduct
 
-This project underlies [the code of conduct](./CODE-OF-CONDUCT.md).
+This project underlies [a code of conduct](./CODE-OF-CONDUCT.md).
 
 ## License
 
