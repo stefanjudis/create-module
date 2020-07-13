@@ -1,6 +1,6 @@
 # create-module
 
-Boilerplate for new Node.js projects. It creates config files like `.gitignore` and `.prettierrc`, initializes a `package.json` and create a GitHub repo.
+Boilerplate for new Node.js projects. It creates config files like `.gitignore` and `.prettierrc`, initializes a `package.json`, writes a `README.md` and `CODE-OF-CONDUCT.md` and creates a new GitHub repo.
 
 ## Requirements and usage
 
