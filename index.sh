@@ -1,5 +1,13 @@
 #!/usr/bin/env sh
 
+if ! command -v realpath 1> /dev/null
+then
+    echo "The command 'realpath' could not be found"
+    echo "Please install it using 'brew install coreutils'"
+    echo "Or a package manager of your choice..."
+    exit 1
+fi
+
 # follow the symlink created by npx
 INIT_PACKAGE_BIN_REAL_PATH=$(realpath "$0")
 INIT_PACKAGE_DIR=$(dirname "$INIT_PACKAGE_BIN_REAL_PATH")
