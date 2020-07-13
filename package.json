@@ -23,5 +23,6 @@
     "url": "https://github.com/stefanjudis/create-module/issues"
   },
   "homepage": "https://github.com/stefanjudis/create-module#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "main": "index.js"
 }

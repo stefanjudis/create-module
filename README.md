@@ -1,21 +1,6 @@
 # create-module
 
-Boilerplate for new Node.js projects. It creates config files like `.gitignore` and `.prettierrc`, initializes a `package.json`, writes a `README.md` and `CODE-OF-CONDUCT.md` and creates a new GitHub repo.
-
-## Requirements and usage
-
-This script relies on the following environment variables being present:
-
-- `GH_USERNAME` and `GH_ACCESS_TOKEN` (to create a new GitHub repo)
-- `MY_EMAIL` to template the `CODE-OF-CONDUCT.md`
-
-```
-npm init @stfnjds
-
-# or
-
-npx @stfnjds/create
-```
+...
 
 ## Code of conduct
 

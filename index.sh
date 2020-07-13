@@ -56,6 +56,7 @@ log "Creating package.json"
   npm init --yes 1> /dev/null
 
 log "Writing template files"
+  echo "$INIT_PACKAGE_DIR"
   for FILE in "$INIT_PACKAGE_DIR"/templates/*
   do
     write_template "$FILE"
