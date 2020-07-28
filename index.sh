@@ -13,7 +13,6 @@ INIT_PACKAGE_BIN_REAL_PATH=$(realpath "$0")
 INIT_PACKAGE_DIR=$(dirname "$INIT_PACKAGE_BIN_REAL_PATH")
 
 NEW_PACKAGE_NAME=$(basename "$PWD")
-DEFAULT_BRANCH="main"
 
 log() {
   echo
@@ -28,14 +27,12 @@ create_new_gh_repo() {
 
   curl -u "$GH_USERNAME:$GH_ACCESS_TOKEN" https://api.github.com/user/repos -d "{\"name\":\"$NEW_PACKAGE_NAME\"}" 1> /dev/null
   git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
-  git commit --allow-empty -m "Create main"
-  git push origin "$DEFAULT_BRANCH"
 }
 
 push_if_repo_exists() {
   git ls-remote --exit-code origin 2> /dev/null
   if test $? = 0; then
-    git push origin "$DEFAULT_BRANCH"
+    git push origin "$(git branch --show-current)"
   else
     echo "Origin does not exist. Not pushing to remote..."
   fi
@@ -49,7 +46,6 @@ write_template() {
 
 log "Initializing git repo"
   git init
-  git checkout -b "$DEFAULT_BRANCH"
 
 log "Creating GitHub repo"
   echo "Want to create a GitHub repo?"
