@@ -29,8 +29,8 @@ create_new_gh_repo() {
   git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
 }
 
-push_if_repo_exists() {
-  git ls-remote --exit-code origin 2> /dev/null
+push_if_origin_defined() {
+  git config remote.origin.url 2> /dev/null
   if test $? = 0; then
     git push origin "$(git branch --show-current)"
   else
@@ -69,4 +69,4 @@ log "Writing template files"
 log "Making initial commit"
   git add .
   git commit -m "Initial commit"
-  push_if_repo_exists
+  push_if_origin_defined
