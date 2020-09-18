@@ -20,23 +20,13 @@ log() {
 }
 
 create_new_gh_repo() {
-  if [ -z "$GH_USERNAME" ] || [ -z "$GH_ACCESS_TOKEN" ]; then
-    echo "Please define GH_USERNAME and GH_ACCESS_TOKEN env var";
-    exit 1
-  fi
-
-  local IS_PRIVATE="false";
-
   echo "Should this repo be private?"
   select yn in "Yes" "No"; do
     case $yn in
-      Yes ) IS_PRIVATE="true"; break;;
-      No ) break;;
+      Yes ) gh repo create --private; break;;
+      No ) gh repo create --public; break;;
     esac
   done
-
-  curl -u "$GH_USERNAME:$GH_ACCESS_TOKEN" https://api.github.com/user/repos -d "{\"name\":\"$NEW_PACKAGE_NAME\", \"private\": $IS_PRIVATE}" 1> /dev/null
-  git remote add origin "git@github.com:$GH_USERNAME/$NEW_PACKAGE_NAME.git"
 }
 
 push_if_origin_defined() {
